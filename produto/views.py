@@ -60,13 +60,6 @@ def add_carrinho(request):
 
     id = int(x['id'][0])
     preco_total = Produto.objects.filter(id=id)[0].preco
-
-
-    
-   
-
-    
-
     preco_total *= int(x['quantidade'][0])
     data = {'id_produto': int(x['id'][0]),
             'observacoes': x['observacoes'][0],

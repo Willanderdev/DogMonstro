@@ -5,7 +5,7 @@
 {%endblock%}
 
 {% block 'conteudo'%}
-<div style="align-items: center; text-align: center;">
+<div class="container" style="align-items: center; text-align: center;">
     <div class="container">
         {% if erro == '1'%}
         <br>
@@ -13,34 +13,34 @@
         <div class="alert alert-danger" role="alert">
             Confira a quantidade de adicionais selecionados
         </div>
-    {%endif%}
+        {%endif%}
 
     </div>
     <img class="tamanhoImg" style="margin-top: 20px;" src="/media/{{produto.img}}">
-    
-    <h3  class="titulo tituloProduto">{{produto.nome_produto}}</h3>
+
+    <h3 class="titulo tituloProduto">{{produto.nome_produto}}</h3>
     <hr style="width: 250px;">
     <h1 class="titulo subTituloProduto">Descrição: </h1>
     <h3 style="color: gray;">{{produto.descricao}}</h3>
     <h1 class="titulo subTituloProduto">Ingredientes: </h1>
     <h3 style="color: gray;">{{produto.ingredientes}}</h3>
 
-    
+
 
     <form method="POST" action="{% url 'add_carrinho' %}">{% csrf_token %}
-    <input name="id" style="display: none;" type="text" value="{{produto.id}}">
-    
-    <h1 class="titulo subTituloProduto">Observações: </h1>
-    <input name="observacoes" class="observacoes" type="text">
+        <input name="id" style="display: none;" type="text" value="{{produto.id}}">
 
-    <h1 class="titulo subTituloProduto">Quantidade: </h1>
-    <input name="quantidade" class="observacoes" type="number"  min="1" max="200" value="1">
+        <h1 class="titulo subTituloProduto">Observações: </h1>
+        <input name="observacoes" class="observacoes" type="text">
 
-    <h1 class="titulo subTituloProduto">Preço: </h1>
-    <h3>R${{produto.preco}} Unidade</h3>
+        <h1 class="titulo subTituloProduto">Quantidade: </h1>
+        <input name="quantidade" class="observacoes" type="number" min="1" max="200" value="1">
 
-    <input class="botao" type="submit" value="Adicionar carrinho">
-</form>
+        <h1 class="titulo subTituloProduto">Preço: </h1>
+        <h3>R${{produto.preco}} Unidade</h3>
+
+        <input class="botao" type="submit" value="Adicionar carrinho">
+    </form>
 
 </div>
 

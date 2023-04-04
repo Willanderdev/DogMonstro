@@ -66,6 +66,8 @@ def finalizar_pedido(request, room_name='pedir'):
 
 
             )
+            # if request.session['carrinho'] == 0:
+                
 
             request.session['carrinho'].clear()
             request.session.save()
@@ -83,7 +85,6 @@ def validaCupom(request):
         data_json = json.dumps({'status': 0,
                                 'desconto': desconto,
                                 'total_com_desconto': str(total_com_desconto).replace('.', ',')
-
                                 })
         return HttpResponse(data_json)
     else:

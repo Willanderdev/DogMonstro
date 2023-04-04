@@ -9,88 +9,73 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="{% static 'css/css.css' %}">
   <script src="{% static 'js/js.js' %}"></script>
+
+  <title>DogMontro</title>
+  <link rel="icon" href="{% static 'img/download.png' %}">
   {% block 'head'%}
 
   {% endblock %}
-  <title>DogMontro</title>
 
 </head>
 
 <body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-default corBorda">
+      <a class="navbar-brand" href="{% url 'home'%}"><img src="{% static 'img/download.png' %}" width="60" height="55"
+          alt="#"></a>
+
+      <div id="navbarNav">
+        <ul class="nav me-auto">
+
+          <li class="nav-item dropdown">
+            <a class="nav-item nav-link" href="{% url 'ver_carrinho' %}">{{carrinho}}x<svg
+                xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-cart3"
+                viewBox="0 0 16 16">
+                <path
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+              </svg></a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorias
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+              {% for i in categorias %}
+              <a class="dropdown-item" href="{% url 'categoria' i.id %}">{{i}}</a>
+              {%endfor%}
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    {% block 'conteudo' %}
 
 
-  <!-- <nav class="navbar navbar-expand-lg navbar-light corBorda">
-    <a class="navbar-brand" href="{% url 'home'%}">DogMontro</a>
-    <a class="navbar-brand" href="{% url 'ver_carrinho' %}">{{carrinho}}x<svg xmlns="http://www.w3.org/2000/svg"
-        width="1.2em" height="1.2em" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-        <path
-          d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-      </svg></a>
-
- 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav me-auto">
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Categorias
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-            {% for i in categorias %}
-            <a class="dropdown-item" href="{% url 'categoria' i.id %}">{{i}}</a>
-            {%endfor%}
-
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>  -->
-  <nav class="navbar navbar-default corBorda">
-    <a class="navbar-brand" href="{% url 'home'%}">DogMontro</a>
-
-    <div id="navbarNav">
-      <ul class="nav me-auto">
-
-        <li class="nav-item dropdown">
-          <a class="nav-item nav-link" href="{% url 'ver_carrinho' %}">{{carrinho}}x<svg
-              xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-cart3"
-              viewBox="0 0 16 16">
-              <path
-                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg></a>
-        </li>
-
-        <li>
-
-          <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-            {% for i in categorias %}
-            <a class="dropdown-item" href="{% url 'categoria' i.id %}">{{i}}</a>
-            {%endfor%}
-
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  {% block 'conteudo' %}
+    {% endblock %}
 
 
-  {% endblock %}
+    <footer>
+      <br>
+      <div class="copi" >
+        <div class="copi1">
+          <p>Copyright © 2022 Willander Vitorino</p>
+        </div>
+      </div>
+      <br>
+    </footer>
 
+    <br>
+    <br>
+    <br>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <br>
-  <br>
-  <br>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
+  </div>
 </body>
 
 </html>
