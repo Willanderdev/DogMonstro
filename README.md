@@ -1,6 +1,6 @@
 # DogMonstro
 
-projeto de um site pra vendas pra uma Hamburgueria, é um projeto simples pra vendas e controle de demanda de vendas...
+projeto de um site de vendas pra uma Hamburgueria, é um projeto simples pra vendas e controle de demanda...
 
 neste projeto estu usando Python - Django, Javascript-Jquery/Ajax
 
