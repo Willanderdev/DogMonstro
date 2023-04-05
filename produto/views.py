@@ -45,32 +45,31 @@ def add_carrinho(request):
         request.session.save()
 
     x = dict(request.POST)
+    
+    z=int(x['id'][0])
+    
+    y = [i['id_produto'] for i in request.session['carrinho']]
+    
+    if z in y:
+        request.session['carrinho'][y.index(z)]['quantidade'] += int(x['quantidade'][0])
+        preco_total = Produto.objects.filter(id=z)[0].preco
+        preco_total *= request.session['carrinho'][y.index(z)]['quantidade']
+        request.session['carrinho'][y.index(z)]['preco'] = preco_total
+        
+    else:
+        id = int(x['id'][0])
+        preco_total = Produto.objects.filter(id=id)[0].preco
+        preco_total *= int(x['quantidade'][0])
+        data = {'id_produto': int(x['id'][0]),
+                'observacoes': x['observacoes'][0],
+                'preco': preco_total,
+                
+                'quantidade': int(x['quantidade'][0])}
 
-    def removeLixo():
-        adicionais = x.copy()
-        adicionais.pop('id')
-        adicionais.pop('csrfmiddlewaretoken')
-        adicionais.pop('observacoes')
-        adicionais.pop('quantidade')
-        adicionais = list(adicionais.items())
-
-        return adicionais
-
-    adicionais = removeLixo()
-
-    id = int(x['id'][0])
-    preco_total = Produto.objects.filter(id=id)[0].preco
-    preco_total *= int(x['quantidade'][0])
-    data = {'id_produto': int(x['id'][0]),
-            'observacoes': x['observacoes'][0],
-            'preco': preco_total,
-            
-            'quantidade': x['quantidade'][0]}
-
-    request.session['carrinho'].append(data)
+        request.session['carrinho'].append(data)
     
     request.session.save()
-    # return HttpResponse(request.session['carrinho'])
+
     return redirect(f'/ver_carrinho')
 
 

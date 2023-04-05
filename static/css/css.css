@@ -1,15 +1,27 @@
-/* body {
-    background: linear-gradient(45deg, #084177, #3c423a, #c2a6a8, #242322, #161515);
-    color: rgb(30, 87, 58);
+html {
+    height: 100%;
+}
 
-} */
+body {
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient( #3c423a, #c2a6a8, #d48a41, #161515);
+    color: rgb(30, 87, 58);
+}
+
+div#img img {
+    width: 400px !important;
+    height: 340px !important;
+}
 
 .corBorda {
-    background-color: #206941;
+    background-color: rgb(103, 22, 128);
 }
 
 .corBorda a {
-    color: red;
+    color: rgb(85, 182, 30);
 }
 
 .observacoes {
@@ -140,7 +152,7 @@ input[type=checkbox]:checked:after {
  .copi1 {
     color: #bd31c4;
     position: fixed;
-    right: 10px;
-    top: 95%;
+    right: 20px;
+    top: 96%;
 
 }

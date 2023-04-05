@@ -27,9 +27,12 @@
       {% endfor %}
     </tbody>
   </table>
+  <br>
   <h3>Frete: R${{frete}}0</h3>
+  
   <h1 class="titulo">Total: </h1>
-  <h2 style="color: gray;">&nbsp R${{total}}0</h2>
+  <h2 style="color: rgb(143, 6, 6);">&nbsp R${{total}}0</h2>
+  <br>
   <a href="{% url 'finalizar_pedido' %}" class="btn btn-success">Finalizar compra</a>
   <a href="{% url 'home'%}" class="btn btn-primary">Continuar comprando</a>
 </div>
